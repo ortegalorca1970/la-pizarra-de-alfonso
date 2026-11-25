@@ -338,6 +338,8 @@ const COURSES = [
 ];
 const EXTRA = ['curio','mist','shorts','chorr','opos','blog'];
 const TABS = [['videos','Vídeos'],['apuntes','Apuntes'],['problemas','Problemas'],['examenes','Exámenes y PAU']];
+
+
 /* MATERIALES PDF por tema: 'curso/tema': [...] */
 const MATS = {
   'quimica-2-bach/1':[
@@ -463,8 +465,48 @@ const MATS = {
     {code:"Q2B_T04_CTRL26R",tipo:'examenes',title:"Control de cinética 2025-26: resuelto",url:"materiales/quimica-2bach/Q2B_T04_CTRL26R_control-cinetica-resuelto.pdf",pages:16,kb:513},
     {code:"Q2B_T04_CTRL26S",tipo:'examenes',title:"Control de cinética 2025-26: soluciones detalladas",url:"materiales/quimica-2bach/Q2B_T04_CTRL26S_control-cinetica-soluciones-detalladas.pdf",pages:14,kb:307}],
   '1-bach/4':[
-    {code:"B1_T04_APU1",tipo:'apuntes',title:"Presentación: solubilidad y propiedades coligativas",url:"materiales/1-bach/B1_T04_APU1_solubilidad-y-propiedades-coligativas.pdf",pages:24,kb:1348}]
+    {code:"B1_T04_APU1",tipo:'apuntes',title:"Presentación: solubilidad y propiedades coligativas",url:"materiales/1-bach/B1_T04_APU1_solubilidad-y-propiedades-coligativas.pdf",pages:24,kb:1348}],
+  'quimica-2-bach/5':[
+    {code:"Q2B_T05_APU1",tipo:'apuntes',title:"Apuntes: factores que modifican el equilibrio. Principio de Le Châtelier",url:"materiales/quimica-2bach/Q2B_T05_APU1_principio-de-le-chatelier.pdf",pages:5,kb:112},
+    {code:"Q2B_T05_APU2",tipo:'apuntes',title:"Presentación de clase: equilibrio químico",url:"materiales/quimica-2bach/Q2B_T05_APU2_presentacion-equilibrio-quimico.pdf",pages:35,kb:3191},
+    {code:"Q2B_T05_APU3",tipo:'apuntes',title:"Presentación de clase: precipitados y equilibrios de solubilidad",url:"materiales/quimica-2bach/Q2B_T05_APU3_presentacion-equilibrios-solubilidad.pdf",pages:14,kb:1028},
+    {code:"Q2B_T05_APU4",tipo:'apuntes',title:"Presentación visual: el equilibrio químico, reacciones reversibles y estabilidad",url:"materiales/quimica-2bach/Q2B_T05_APU4_presentacion-visual-equilibrio-1.pdf",pages:15,kb:2509},
+    {code:"Q2B_T05_APU5",tipo:'apuntes',title:"Presentación visual: equilibrio químico (2)",url:"materiales/quimica-2bach/Q2B_T05_APU5_presentacion-visual-equilibrio-2.pdf",pages:15,kb:2082},
+    {code:"Q2B_T05_APU6",tipo:'apuntes',title:"Presentación visual: equilibrio químico heterogéneo",url:"materiales/quimica-2bach/Q2B_T05_APU6_presentacion-visual-equilibrio-heterogeneo.pdf",pages:12,kb:1769},
+    {code:"Q2B_T05_APU7",tipo:'apuntes',title:"Presentación visual: el principio de Le Châtelier",url:"materiales/quimica-2bach/Q2B_T05_APU7_presentacion-visual-le-chatelier.pdf",pages:15,kb:2983},
+    {code:"Q2B_T05_APU8",tipo:'apuntes',title:"Presentación visual (en inglés): equilibrium dynamics and industrial mastery",url:"materiales/quimica-2bach/Q2B_T05_APU8_presentacion-visual-equilibrium-dynamics-en.pdf",pages:15,kb:3885},
+    {code:"Q2B_T05_APU9",tipo:'apuntes',title:"Infografías: equilibrio químico (3 láminas)",url:"materiales/quimica-2bach/Q2B_T05_APU9_infografias-equilibrio-quimico.pdf",pages:3,kb:904},
+    {code:"Q2B_T05_APU10",tipo:'apuntes',title:"Infografías: el principio de Le Châtelier (2 láminas)",url:"materiales/quimica-2bach/Q2B_T05_APU10_infografias-le-chatelier.pdf",pages:2,kb:894},
+    {code:"Q2B_T05_APU11",tipo:'apuntes',title:"Lectura: el mal de altura y la solubilidad de los gases",url:"materiales/quimica-2bach/Q2B_T05_APU11_lectura-mal-de-altura-solubilidad.pdf",pages:1,kb:37},
+    {code:"Q2B_T05_PRO1",tipo:'problemas',title:"Colección de problemas de equilibrio químico (10 págs.)",url:"materiales/quimica-2bach/Q2B_T05_PRO1_coleccion-problemas-equilibrio.pdf",pages:10,kb:163},
+    {code:"Q2B_T05_PRO2",tipo:'problemas',title:"Problemas de equilibrio químico con soluciones (Kc, Kp)",url:"materiales/quimica-2bach/Q2B_T05_PRO2_problemas-equilibrio-con-soluciones.pdf",pages:2,kb:97},
+    {code:"Q2B_T05_PRO3",tipo:'problemas',title:"Problemas de equilibrio: constante de equilibrio y grado de disociación",url:"materiales/quimica-2bach/Q2B_T05_PRO3_problemas-equilibrio-2.pdf",pages:3,kb:71},
+    {code:"Q2B_T05_PRO4",tipo:'problemas',title:"Problemes d'equilibri (en valencià)",url:"materiales/quimica-2bach/Q2B_T05_PRO4_problemes-equilibri-valencia.pdf",pages:3,kb:90},
+    {code:"Q2B_T05_PRO5",tipo:'problemas',title:"Problemas de termoquímica y equilibrio químico (repaso)",url:"materiales/quimica-2bach/Q2B_T05_PRO5_problemas-termoquimica-y-equilibrio.pdf",pages:5,kb:147},
+    {code:"Q2B_T05_PRO6",tipo:'problemas',title:"Cuestiones sobre el principio de Le Châtelier",url:"materiales/quimica-2bach/Q2B_T05_PRO6_cuestiones-le-chatelier.pdf",pages:2,kb:65},
+    {code:"Q2B_T05_SOL6",tipo:'problemas',title:"Cuestiones sobre el principio de Le Châtelier: soluciones",url:"materiales/quimica-2bach/Q2B_T05_SOL6_cuestiones-le-chatelier-soluciones.pdf",pages:10,kb:313},
+    {code:"Q2B_T05_PRO7",tipo:'problemas',title:"Problemas de equilibrio químico (PAU Madrid): enunciados",url:"materiales/quimica-2bach/Q2B_T05_PRO7_problemas-equilibrio-pau-madrid.pdf",pages:2,kb:304},
+    {code:"Q2B_T05_SOL7A",tipo:'problemas',title:"Problemas de equilibrio químico (PAU Madrid): soluciones",url:"materiales/quimica-2bach/Q2B_T05_SOL7A_problemas-equilibrio-pau-madrid-soluciones.pdf",pages:7,kb:150},
+    {code:"Q2B_T05_SOL7B",tipo:'problemas',title:"Problemas de equilibrio químico (PAU Madrid): resolución detallada paso a paso",url:"materiales/quimica-2bach/Q2B_T05_SOL7B_problemas-equilibrio-pau-madrid-resolucion-detallada.pdf",pages:10,kb:327},
+    {code:"Q2B_T05_PRO8",tipo:'problemas',title:"Problemas de solubilidad y producto de solubilidad (Ks)",url:"materiales/quimica-2bach/Q2B_T05_PRO8_problemas-solubilidad.pdf",pages:2,kb:79},
+    {code:"Q2B_T05_PRO9",tipo:'problemas',title:"Precipitación: problemas de Ks y solubilidad",url:"materiales/quimica-2bach/Q2B_T05_PRO9_precipitacion-problemas-ks.pdf",pages:4,kb:129},
+    {code:"Q2B_T05_PRO10",tipo:'problemas',title:"Equilibrios de solubilidad: colección de problemas",url:"materiales/quimica-2bach/Q2B_T05_PRO10_equilibrios-solubilidad-problemas.pdf",pages:3,kb:89},
+    {code:"Q2B_T05_PRO11",tipo:'problemas',title:"Reacciones de precipitación: cuestiones y problemas",url:"materiales/quimica-2bach/Q2B_T05_PRO11_reacciones-precipitacion.pdf",pages:4,kb:116},
+    {code:"Q2B_T05_PRO12",tipo:'problemas',title:"Precipitación: problemas contextualizados (mármol, efecto del ion común…)",url:"materiales/quimica-2bach/Q2B_T05_PRO12_precipitacion-problemas-contextualizados.pdf",pages:2,kb:67},
+    {code:"Q2B_T05_PAU1",tipo:'examenes',title:"PAU de equilibrio químico: enunciados (fase gas y heterogéneo)",url:"materiales/quimica-2bach/Q2B_T05_PAU1_pau-equilibrio-enunciados.pdf",pages:12,kb:131},
+    {code:"Q2B_T05_PAU2",tipo:'examenes',title:"PAU de equilibrio químico: selección de problemas",url:"materiales/quimica-2bach/Q2B_T05_PAU2_pau-equilibrio-seleccion.pdf",pages:4,kb:76},
+    {code:"Q2B_T05_PAU3",tipo:'examenes',title:"PAU Comunitat Valenciana: equilibrio químico y solubilidad",url:"materiales/quimica-2bach/Q2B_T05_PAU3_pau-cv-equilibrio.pdf",pages:12,kb:1325},
+    {code:"Q2B_T05_EX00A",tipo:'examenes',title:"Examen de equilibrio químico, modelo 1",url:"materiales/quimica-2bach/Q2B_T05_EX00A_examen-equilibrio-modelo-1.pdf",pages:1,kb:53},
+    {code:"Q2B_T05_EX00B",tipo:'examenes',title:"Examen de equilibrio químico, modelo 2 (2ª evaluación)",url:"materiales/quimica-2bach/Q2B_T05_EX00B_examen-equilibrio-modelo-2.pdf",pages:1,kb:64},
+    {code:"Q2B_T05_EX00C",tipo:'examenes',title:"Examen de equilibrio químico, modelo 3",url:"materiales/quimica-2bach/Q2B_T05_EX00C_examen-equilibrio-modelo-3.pdf",pages:1,kb:40},
+    {code:"Q2B_T05_EX15",tipo:'examenes',title:"Examen de equilibrio químico 2015",url:"materiales/quimica-2bach/Q2B_T05_EX15_examen-equilibrio-2015.pdf",pages:1,kb:67},
+    {code:"Q2B_T05_EX18",tipo:'examenes',title:"Examen de equilibrio químico 2018",url:"materiales/quimica-2bach/Q2B_T05_EX18_examen-equilibrio-2018.pdf",pages:2,kb:79},
+    {code:"Q2B_T05_EX20",tipo:'examenes',title:"Examen de equilibrio químico 2020",url:"materiales/quimica-2bach/Q2B_T05_EX20_examen-equilibrio-2020.pdf",pages:1,kb:73},
+    {code:"Q2B_T05_EX25",tipo:'examenes',title:"Examen de equilibrio químico (curso 2024-25)",url:"materiales/quimica-2bach/Q2B_T05_EX25_examen-equilibrio-2025.pdf",pages:1,kb:76},
+    {code:"Q2B_T05_EX26",tipo:'examenes',title:"Examen de equilibrio químico (curso 2025-26)",url:"materiales/quimica-2bach/Q2B_T05_EX26_examen-equilibrio-2026.pdf",pages:6,kb:102},
+    {code:"Q2B_T05_EX26S",tipo:'examenes',title:"Examen de equilibrio químico 2025-26: resolución",url:"materiales/quimica-2bach/Q2B_T05_EX26S_examen-equilibrio-2026-resolucion.pdf",pages:8,kb:204}]
 };
+
 /* Color de cada curso: c = color fuerte (detalles), t = fondo pastel (siempre con texto oscuro) */
 const LOOK = {
   '2-eso':{c:'#15803d',t:'#dcfce7',lv:'2º ESO',sub:'Física y Química'}, '3-eso':{c:'#0369a1',t:'#dbeafe',lv:'3º ESO',sub:'Física y Química'}, '4-eso':{c:'#6d28d9',t:'#ede9fe',lv:'4º ESO',sub:'Física y Química'},

@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Pizarra de Alfonso · Física y Química</title>
+<meta name="description" content="Vídeos, apuntes, problemas resueltos y exámenes de Física y Química de 2º ESO a 2º Bachillerato, ordenados por curso y tema. Prof. Alfonso Ortega Lorca.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE: alegre, cercana y clara, para estudiantes; IDEA: cuaderno de clase con marcadores de colores;
+   PICTURE: dibujo de laboratorio (átomo, matraz, onda) con fórmulas en la portada; COLOUR: fondo blanco, tinta oscura,
+   cada curso con un tono pastel de fondo (texto siempre oscuro) y un color fuerte para detalles; TYPE: Fredoka + Nunito;
+   LAYOUT: tarjetas redondeadas, temas en barra lateral, pestañas en forma de píldora. */
+:root{--bg:#fff;--soft:#f6f7fb;--line:#e5e7ef;--ink:#1d1b2e;--mute:#555a6e;--brand:#5b3fd1;--brand-t:#ece8ff;--c:#5b3fd1;--t:#ece8ff}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:84px}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Nunito,system-ui,sans-serif;overflow-x:clip}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;color:inherit}
+h1,h2,h3{font-family:Fredoka,Nunito,sans-serif;font-weight:600;margin:0;letter-spacing:-.005em}
+.wrap{max-width:1240px;margin:0 auto;padding:0 max(4vw,16px)}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px;border-radius:6px}
+.dot{width:12px;height:12px;border-radius:50%;background:var(--c);flex:none}
+
+/* cabecera */
+header{position:sticky;top:0;z-index:40;background:#fff;box-shadow:0 6px 18px rgba(29,27,46,.06)}
+header::after,footer::before{content:"";display:block;height:6px;background:linear-gradient(90deg,#16a34a 0 16.6%,#0284c7 0 33.3%,#7c3aed 0 50%,#ea580c 0 66.6%,#db2777 0 83.3%,#eab308 0)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:18px;height:72px}
+.brand{display:flex;align-items:center;gap:12px;font:600 22px/1.1 Fredoka,sans-serif;white-space:nowrap}
+.brand small{display:block;font:700 12.5px Nunito,system-ui,sans-serif;color:var(--mute)}
+.mark{width:44px;height:44px;border-radius:14px;background:#245746;position:relative;flex:none;transform:rotate(-4deg);box-shadow:inset 0 -6px 0 #b07a3c}
+.mark::before{content:"F·Q";position:absolute;inset:0 0 6px;display:grid;place-items:center;color:#fff;font:600 15px Fredoka,Nunito,sans-serif}
+nav.desk{display:flex;gap:4px}
+.ddw{position:relative}
+.ddb{display:flex;align-items:center;gap:8px;padding:9px 13px;border:2px solid transparent;border-radius:999px;background:none;font-weight:800;font-size:15px;min-height:44px}
+.ddb:hover,.ddw.open .ddb{background:var(--t)}
+.ddb.cur{background:var(--t);border-color:var(--c)}
+.dd{position:absolute;top:100%;left:0;padding-top:10px;width:340px;visibility:hidden;opacity:0;transform:translateY(6px);transition:.15s}
+.ddw.r .dd{left:auto;right:0}
+.ddw:hover .dd,.ddw:focus-within .dd,.ddw.open .dd{visibility:visible;opacity:1;transform:none}
+.ddp{background:#fff;color:var(--ink);border:2px solid var(--c);border-radius:18px;box-shadow:0 18px 40px rgba(29,27,46,.16);padding:8px;overflow:hidden}
+.ddp a{display:flex;gap:10px;align-items:center;padding:8px 10px;border-radius:12px;font-size:15px;font-weight:700;line-height:1.3}
+.ddp a:hover{background:var(--t)}
+.ddp a b{flex:none;width:28px;height:28px;border-radius:50%;background:var(--t);color:var(--ink);display:grid;place-items:center;font-size:13.5px}
+.ddp .all{background:var(--t);margin-bottom:6px;justify-content:space-between;font-weight:800}
+.ddp .all span{color:var(--c)}
+.mobb{display:none;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:8px 16px;font-weight:800;min-height:44px}
+#mob{display:none;padding:10px max(4vw,16px) 16px;max-height:75vh;overflow:auto;background:#fff;border-top:1px solid var(--line)}
+#mob details{background:var(--t);border-radius:16px;margin-bottom:8px;overflow:hidden}
+#mob summary{padding:13px 16px;font-weight:800;display:flex;gap:10px;align-items:center;cursor:pointer}
+#mob a{display:block;padding:10px 16px;font-size:15.5px;font-weight:700;background:#fff;border-top:1px solid var(--line)}
+@media(max-width:1120px){nav.desk{display:none}.mobb{display:block}#mob.on{display:block}}
+.mobb{white-space:nowrap;flex:none}
+@media(max-width:480px){.brand{font-size:18px;gap:9px}.brand small{display:none}.mark{width:38px;height:38px}.mobb{padding:8px 12px}}
+
+/* buscador */
+.sbox{position:relative}
+.sbox input{width:100%;font:600 17px Nunito,system-ui,sans-serif;padding:15px 18px 15px 50px;border:3px solid var(--ink);border-radius:999px;background:#fff;color:var(--ink);box-shadow:0 5px 0 var(--ink)}
+.sbox input::placeholder{color:#6b6f82}
+.sbox input:focus{outline:none;border-color:var(--brand);box-shadow:0 5px 0 var(--brand)}
+.sbox svg{position:absolute;left:19px;top:18px}
+.sres{display:none;position:absolute;left:0;right:0;top:calc(100% + 14px);background:#fff;color:var(--ink);border:2px solid var(--ink);border-radius:20px;box-shadow:0 18px 40px rgba(29,27,46,.18);max-height:420px;overflow:auto;z-index:30;padding:8px}
+.sres.on{display:block}
+.sres a{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border-radius:12px}
+.sres a:hover{background:var(--t)}
+.sres small{display:block;color:var(--mute);font-size:13.5px;font-weight:600}
+.sres .dot{margin-top:7px}
+.sres .k{font-size:13px;font-weight:800;color:var(--mute);margin:6px 12px 2px}
+
+/* portada */
+.hero{position:relative;overflow:hidden;background:linear-gradient(120deg,#ede9fe 0%,#fce7f3 45%,#fef9c3 100%);border-bottom:3px solid var(--ink)}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;pointer-events:none}
+.hero::before{width:340px;height:340px;left:-120px;bottom:-160px;background:#bae6fd;opacity:.7}
+.hero::after{width:220px;height:220px;right:38%;top:-110px;background:#bbf7d0;opacity:.8}
+.hgrid{position:relative;z-index:1}
+.hgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,520px);gap:clamp(24px,4vw,56px);align-items:center;padding-block:clamp(36px,5vw,68px)}
+.hero h1{font-size:clamp(38px,5.4vw,62px);line-height:1.05;font-weight:700;text-wrap:balance}
+.hero h1 span{background:linear-gradient(transparent 62%,#ffd84d 62% 92%,transparent 92%);padding:0 .08em}
+.hero p.lede{font-size:19px;color:#3d3a52;margin:16px 0 28px;max-width:32em;font-weight:600}
+.stats{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.stats div:nth-child(1){background:#fee2e2}.stats div:nth-child(2){background:#dbeafe}.stats div:nth-child(3){background:#dcfce7}
+.stats div{border:2px solid var(--ink);border-radius:16px;padding:8px 16px;font-weight:700;font-size:14.5px;color:var(--mute)}
+.stats b{font:600 22px Fredoka,Nunito,sans-serif;color:var(--ink);margin-right:6px}
+.doodle{width:100%;height:auto;display:block}
+@media(max-width:900px){.hgrid{grid-template-columns:1fr}.doodle{max-width:480px;margin:0 auto}}
+
+.band{padding:clamp(40px,5vw,72px) 0}
+.band.alt{background:#ecfeff}
+.band.alt2{background:linear-gradient(120deg,#fef3c7,#fce7f3)}
+.sh{margin-bottom:24px}
+.sh h2{font-size:clamp(28px,3.2vw,38px)}
+.sh p{margin:6px 0 0;color:var(--mute);font-weight:600}
+.courses{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media(max-width:900px){.courses{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.courses{grid-template-columns:1fr}}
+.cc{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:14px;background:var(--t);border:3px solid var(--ink);border-radius:24px;padding:0 22px 18px;box-shadow:0 6px 0 var(--ink);transition:transform .15s,box-shadow .15s}
+.cc:hover{transform:translateY(-4px);box-shadow:0 10px 0 var(--ink)}
+.cc .top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 -22px;padding:16px 22px;background:var(--c);border-bottom:3px solid var(--ink)}
+.cc::after{content:"";position:absolute;right:-30px;bottom:-30px;width:110px;height:110px;border-radius:50%;background:var(--c);opacity:.18}
+.cc .lv{font:700 clamp(30px,3.4vw,38px)/1 Fredoka,Nunito,sans-serif;color:#fff}
+.cc .badge{background:#fff;border:2px solid var(--ink);border-radius:999px;padding:3px 11px;font-weight:800;font-size:13px;white-space:nowrap}
+.cc .nm{font-weight:800;font-size:17px}
+.cc .nums{display:flex;flex-wrap:wrap;gap:8px}
+.cc .nums span{background:#fff;border-radius:999px;padding:4px 12px;font-weight:700;font-size:14px}
+.cc .go{margin-top:auto;align-self:flex-start;font-weight:800;color:#fff;background:var(--c);border-radius:999px;padding:6px 16px}
+.how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.how div{border:3px solid var(--ink);border-radius:22px;padding:20px;box-shadow:0 5px 0 var(--ink)}
+.how div:nth-child(1){background:#ffe4e6}.how div:nth-child(2){background:#e0f2fe}.how div:nth-child(3){background:#fef3c7}
+.how i{background:#fff!important;border:2px solid var(--ink)}
+.how i{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:14px;font:normal 600 20px Fredoka,Nunito,sans-serif;margin-bottom:10px}
+.how h3{font-size:20px;margin-bottom:6px}
+.how p{margin:0;color:var(--mute);font-weight:600;font-size:15.5px}
+@media(max-width:760px){.how{grid-template-columns:1fr}}
+
+/* tarjetas de vídeo */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:20px}
+.grid.big{grid-template-columns:repeat(auto-fill,minmax(min(100%,430px),1fr))}
+.grid.solo{grid-template-columns:minmax(0,860px)}
+.card{border:2px solid var(--ink);border-top:8px solid var(--c);border-radius:20px;overflow:hidden;background:#fff;box-shadow:0 5px 0 var(--ink)}
+.grid>.card:nth-child(6n+1){--c:#db2777}.grid>.card:nth-child(6n+2){--c:#0284c7}.grid>.card:nth-child(6n+3){--c:#16a34a}.grid>.card:nth-child(6n+4){--c:#ea580c}.grid>.card:nth-child(6n+5){--c:#7c3aed}.grid>.card:nth-child(6n+6){--c:#eab308}
+.layout .grid>.card{--c:inherit}
+.ph{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;padding:0;background:#1d1b2e}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ph .pl{position:absolute;inset:0;margin:auto;width:66px;height:66px;border-radius:50%;background:#e01e37;display:grid;place-items:center;box-shadow:0 0 0 6px rgba(255,255,255,.45);transition:transform .15s}
+.ph:hover .pl{transform:scale(1.1)}
+.ph .n{position:absolute;right:10px;bottom:10px;background:#fff;color:var(--ink);font-size:13px;font-weight:800;padding:3px 10px;border-radius:999px}
+.card .cb{padding:13px 16px;display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.card .cb p{margin:0;font-weight:800;line-height:1.35;flex:1}
+.card .cb a{flex:none;font-size:14px;font-weight:800;color:#b3122a;white-space:nowrap}
+iframe{display:block;width:100%;aspect-ratio:16/9;border:0}
+
+/* curso */
+.chead{position:relative;overflow:hidden;background:linear-gradient(110deg,var(--t) 0%,#fff 130%);border-bottom:3px solid var(--ink)}
+.chead::before{content:"";position:absolute;right:-60px;top:-80px;width:260px;height:260px;border-radius:50%;background:var(--c);opacity:.16}
+.chead::after{content:"";position:absolute;left:38%;bottom:-70px;width:150px;height:150px;border-radius:50%;background:var(--c);opacity:.10}
+.chg{position:relative;z-index:1}
+.chead h1 .lv{display:inline-block;background:var(--c);color:#fff;border:3px solid var(--ink);border-radius:16px;padding:0 14px;margin-right:10px;transform:rotate(-2deg)}
+.chg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:24px;align-items:end;padding-block:30px 34px}
+.crumb{font-size:14.5px;font-weight:700;color:#3d3a52;margin-bottom:8px}.crumb a{text-decoration:underline;text-underline-offset:3px}
+.chead h1{font-size:clamp(34px,4.6vw,54px);line-height:1.05;font-weight:700}
+@media(max-width:860px){.chg{grid-template-columns:1fr}}
+.layout{display:grid;grid-template-columns:300px minmax(0,1fr);gap:36px;align-items:start;padding-block:32px}
+.side{position:sticky;top:92px;display:flex;flex-direction:column;gap:6px}
+.side p{margin:0 0 4px;font-size:14px;font-weight:800;color:var(--mute)}
+.side a{display:grid;grid-template-columns:32px minmax(0,1fr);gap:10px;align-items:start;padding:10px 12px;border-radius:16px;border:2px solid transparent;font-size:15px;font-weight:700;line-height:1.3}
+.side a b{width:32px;height:32px;border-radius:50%;background:var(--t);display:grid;place-items:center;font-size:14px}
+.side a small{display:block;font-size:13px;font-weight:600;color:var(--mute);margin-top:3px}
+.side a:hover{background:var(--soft)}
+.side a.on{background:var(--t);border-color:var(--ink)}
+.side a.on b{background:var(--c);color:#fff}
+.side a b{border:2px solid var(--c)}
+.side .rv{color:#9a4a00;font-weight:800}
+@media(max-width:900px){.layout{grid-template-columns:1fr;gap:18px}.side{position:static;flex-direction:row;overflow-x:auto;padding-bottom:6px}.side p{display:none}.side a{flex:none;width:210px;background:var(--soft)}}
+.thead h2{font-size:clamp(28px,3.2vw,38px);line-height:1.15}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.meta span{background:var(--t);border-radius:999px;padding:4px 12px;font-weight:700;font-size:14px;color:var(--mute)}
+.meta b{color:var(--ink)}
+.code{font:700 13px ui-monospace,SFMono-Regular,Menlo,monospace;background:#fff;border:2px solid var(--ink);color:var(--ink);padding:2px 8px;border-radius:8px;white-space:nowrap}
+.meta .code{background:#fff;color:var(--ink);padding:2px 10px}
+.warn{background:#fff4d6;border:2px solid #e9b949;border-radius:14px;padding:10px 14px;margin:14px 0 0;font-weight:700;font-size:15px}
+.tabs{display:flex;gap:10px;margin:24px 0 22px;overflow-x:auto;padding-bottom:6px}
+.tab{flex:none;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:9px 18px;font-weight:800;font-size:15.5px;min-height:44px}
+.tab:hover{background:var(--t)}
+.tab[data-tab=videos]{--k:#be123c;--kt:#ffe4e6}.tab[data-tab=apuntes]{--k:#0369a1;--kt:#e0f2fe}.tab[data-tab=problemas]{--k:#6d28d9;--kt:#ede9fe}.tab[data-tab=examenes]{--k:#c2410c;--kt:#ffedd5}
+.tab{background:var(--kt)}.tab:hover{background:var(--kt);box-shadow:0 4px 0 var(--k)}
+.tab.on{background:var(--k);color:#fff;border-color:var(--ink)}
+.tab span{display:inline-block;min-width:24px;margin-left:8px;padding:0 7px;border-radius:999px;background:var(--t);color:var(--ink);font-size:13px}
+.docs{display:flex;flex-direction:column;gap:12px}
+.doc.apuntes{--k:#0369a1;--kt:#e0f2fe}.doc.problemas{--k:#6d28d9;--kt:#ede9fe}.doc.examenes{--k:#c2410c;--kt:#ffedd5}
+.doc{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px 16px;border:2px solid var(--line);border-left:8px solid var(--k);border-radius:18px;background:#fff;transition:border-color .15s,background .15s}
+.doc:hover{border-color:var(--ink);border-left-color:var(--k);background:var(--kt)}
+.pdf{width:42px;height:48px;border-radius:10px;background:var(--kt);color:var(--k);border:2px solid var(--k);display:grid;place-items:center;font:600 13px Fredoka,Nunito,sans-serif}
+.doc .t{font-weight:800;line-height:1.35}
+.doc .s{font-size:13.5px;font-weight:700;color:var(--mute);margin-top:4px;display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center}
+.doc .btn{background:var(--k)}
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--ink);color:#fff;border-radius:999px;padding:10px 18px;font-weight:800;font-size:14.5px;white-space:nowrap;min-height:44px}
+.btn:hover{background:var(--brand)}
+.btn.ghost{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+.btn.ghost:hover{background:var(--t)}
+@media(max-width:560px){.doc{grid-template-columns:auto minmax(0,1fr)}.doc .btn{grid-column:2;justify-self:start}}
+.empty{border:3px dashed #c9c6dc;border-radius:20px;padding:34px 20px;text-align:center;color:var(--mute);font-weight:700}
+.empty b{color:var(--ink)}
+.pn{display:flex;justify-content:space-between;gap:12px;margin-top:36px}
+table.ov{width:100%;border-collapse:separate;border-spacing:0 8px;font-size:15.5px}
+table.ov th{text-align:left;font-size:13px;color:var(--mute);font-weight:800;padding:0 14px}
+table.ov td{padding:13px 14px;background:var(--t);font-weight:700}
+table.ov tr:nth-child(even) td{background:#fff;box-shadow:inset 0 0 0 2px var(--t)}
+table.ov td:first-child{border-radius:14px 0 0 14px}table.ov td:last-child{border-radius:0 14px 14px 0}
+table.ov td.n,table.ov th.n{text-align:right;font-variant-numeric:tabular-nums}
+table.ov tr:hover td{background:#fff;box-shadow:inset 0 0 0 2px var(--c)}
+footer{background:#1d1b2e;color:#e7e5f2}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding-block:30px;font-weight:700}
+footer .f{font:600 22px Fredoka,Nunito,sans-serif;color:#fff}
+footer a{color:#ffd84d}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+@media(max-width:600px){.stack thead{display:none}.stack tr{display:grid;margin-bottom:8px}.stack td{border-radius:0!important;padding:6px 14px}.stack td:first-child{border-radius:14px 14px 0 0!important;padding-top:12px}.stack td:last-child{border-radius:0 0 14px 14px!important;padding-bottom:12px}.stack td.n{text-align:left}.stack td.n::before{content:attr(data-l)': ';color:var(--mute)}}
+</style>
+<script>new MutationObserver(()=>{for(const c of document.querySelectorAll('.stack td:not([data-l])')){let i=0,p=c;while(p=p.previousElementSibling)i+=p.colSpan;c.dataset.l=c.closest('table').rows[0].cells[i]?.textContent||''}}).observe(document,{childList:true,subtree:true})</script>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a href="#" class="brand"><span class="mark" aria-hidden="true"></span><span>La Pizarra de Alfonso<small>Física y Química · ESO y Bachillerato</small></span></a>
+    <nav class="desk" id="desk" aria-label="Cursos"></nav>
+    <button class="mobb" id="mobb" aria-expanded="false" aria-controls="mob">Cursos ☰</button>
+  </div>
+  <div id="mob"></div>
+</header>
+
+<main id="app"></main>
+
+<footer><div class="wrap"><span class="f">La Pizarra de Alfonso</span><span>Prof. Alfonso Ortega Lorca · <a href="https://www.youtube.com/@FisicayQuimicaConAlfonso" target="_blank" rel="noopener">Canal de YouTube «Física y Química» →</a></span></div></footer>
+
+<script>
+{
+/* ===================== CATÁLOGO DE VÍDEOS Y TEMAS ===================== */
+const P = s => 'PLFb-Qy9krgM' + s;
+const L = {
+  q2b:[P('gOdHtJGHz6-yHTeAybv1PA'),'_RMy0oiSo_k',253,'Química 2º Bachillerato (curso completo)'],
+  f2b:[P('gqmS3tzVNvZeRIZv2unS9C'),'OaUdNBfLoaM',142,'Física 2º Bachillerato (curso completo)'],
+  q1b:[P('ia4ZyAEnkH8QZ4mEb9iIvX'),'DcWkwXvwEqg',244,'Química 1º Bachillerato (curso completo)'],
+  f1b:[P('iAUED5lL2zzFUb0BuysXSW'),'S_lAcpf5oRE',91,'Física 1º Bachillerato (curso completo)'],
+  e4:[P('jbCC5ip99WXFghfNhzGRj0'),'0bjv2qG1Wfw',93,'Física y Química 4º ESO (curso completo)'],
+  e3:[P('imRcK4aTRdGczanV4OX8eB'),'DcWkwXvwEqg',82,'Física y Química 3º ESO (curso completo)'],
+  estr:[P('hhGmVt1KlDMYJlbjL3_qN1'),'y2XrrY4ne_o',8,'Estructura atómica. Teoría atómica 1º y 2º Bach'],
+  tabla:[P('gE_ws1HH-ZxeBk_PMwpgZ3'),'806RDr20SOQ',3,'Tabla periódica'],
+  enlace:[P('iehIR4Z7adUby6WI7F-1rw'),'7WtUgJrF4qA',31,'Enlace químico: Lewis, geometría y fuerzas intermoleculares'],
+  termo:[P('iFEcxwBA_jfbFd0gyhtAs4'),'CN6mMrySkBc',3,'Termoquímica y termodinámica: entalpía, entropía y Gibbs'],
+  cin:[P('hcBVSJs2QNzOucmtrkkpss'),'Iom5AgfPvvo',7,'Cinética'],
+  equi:[P('jBbwC6b_VlqLJLgiM5qOtZ'),'k1Rgs67IMAU',15,'Equilibrio químico: Kc, Kp y Le Chatelier'],
+  acb:[P('h-w3nnvu9AuilartveWQwE'),'3jwhvpUiFWU',25,'Ácido-base 2º Bach: pH, neutralización y valoraciones'],
+  acbEn:[P('gml1dzZbGbBk7OHxXej7TI'),'kpxslnX0fh4',3,'Acid-base (en inglés)'],
+  redox:[P('gqb8HQV1RQCg637Tj6vHCP'),'zKslvcOf6Xw',41,'Reacciones redox: ion-electrón y pilas'],
+  org:[P('hvq_0Lz4jDKirfvzTTS2s8'),'2KtZIpDSIE0',23,'Curso de química orgánica'],
+  grav:[P('g9uynbWc0ZixR5RFLA0Tb1'),'XUA54yUreu0',41,'Campo gravitatorio: ley de gravitación y satélites'],
+  elec:[P('hW-uH5qK3qdcWm9QZmquN0'),'Mr3i-Ift3N4',12,'Campo eléctrico: problemas resueltos EBAU'],
+  mag:[P('hPwPTKzFnhkPldKpkWN4Pp'),'U0Zfjudg1k0',5,'Campo magnético: ejercicios y teoría EBAU'],
+  ind:[P('gQc6RfHztWIIGJvzJeo9O-'),'ICgRv4nD4dQ',1,'Inducción electromagnética: Faraday y Lenz'],
+  mas:[P('jPIqAnPM1mGGL14GAvSsRD'),'uTQeiD9mkdY',7,'Movimiento armónico simple: teoría y problemas'],
+  ondas:[P('h7Z2zyEJw042HZiue64kvb'),'MUuq3QQoTao',1,'Ondas y movimiento ondulatorio: ejercicios EBAU'],
+  opt:[P('hX1xB_6KMVHiEe5zua8XU5'),'OZwmCnqkOdI',23,'Óptica física y geométrica: ejercicios resueltos'],
+  optg:[P('iLrulxYLeVaWdu0I0CuaJo'),'7QrwXUNf4s0',9,'Óptica geométrica'],
+  rel:[P('i5OTpja2VupgS_e_1weZv0'),'shs3R4VPYSI',2,'Física relativista: relatividad especial'],
+  cuant:[P('j0Y6o2WfHkaZkLOmzNeJ_8'),'4lpUnrOPXxc',14,'Física cuántica: dualidad y efecto fotoeléctrico'],
+  nuc:[P('gLF7Gru0WqT-pjd0qJOcwg'),'RgOlAa5Ptik',27,'Física nuclear: defecto de masa y desintegración'],
+  tam:[P('jephza8iOpz8vBZzoWryYK'),'ki_gpNnLqTk',8,'Teoría atómico-molecular'],
+  cc:[P('gjJq1HL2y_rVqyA3uG_URh'),'fdob7cip1uw',10,'Composición centesimal'],
+  fem:[P('jGc4eyTLJHIhYLbHiLfzTh'),'sFEtiNhcJ4k',24,'Fórmula empírica y molecular'],
+  gases:[P('gEguoyn220aNb4UUKENjic'),'RuRpjmOz3oI',14,'Gases'],
+  leyg:[P('gPtjTJwxDxRMGtUcorA-ET'),'uX1An-oOcZk',23,'Leyes de los gases: Boyle, Charles, Gay-Lussac'],
+  dis:[P('jc3eXzX83InRHwCRYJSt9T'),'P0ohOGPxQfo',null,'Disoluciones'],
+  esteq:[P('h4VpdWT8yLJNAW3PSgs-t9'),'55Lw2TBmACk',null,'Estequiometría: moles, gramos y reactivo limitante'],
+  tiro:[P('hnMJ0sBS3xipSQ99NcFP0L'),'6ZYDffgQ9y8',14,'Movimiento en dos dimensiones. Tiro parabólico'],
+  newton:[P('i0a3O60RjHvs8Z3xDsIxRa'),'QtEK1z3jt2k',null,'Leyes de Newton. Dinámica'],
+  trab:[P('jgYA67OVatD-0ySh-uktc8'),'IYGUc3Af_Oo',8,'Trabajo y energía mecánica'],
+  mru:[P('gg8EIjef2VS3pW1oUZ6MTR'),'MReRJieHha0',26,'Cinemática: MRU y MRUA'],
+  mcu:[P('gGTuJcHEMIS5waTHCbal5A'),'KwVM4PEge0Q',null,'MCU y gravitación 4º ESO'],
+  pres:[P('h07i7wfvwj0-xrOpuRK6ih'),'i6wCwCyRplk',25,'Presiones'],
+  calor:[P('jYC3g-9wKPcaQmjQi7pFRb'),'BX1mbBnoO-Y',18,'Energía calorífica'],
+  form:[P('gjqrdCkXEoG37mNdNZjWHt'),'LL3i53FJ9vA',10,'Formulación inorgánica desde cero'],
+  fact:[P('g2uxvkS5BK8euEH_zWypGc'),'0bjv2qG1Wfw',8,'Factores de conversión y densidad'],
+  graf:[P('hKktfLz7f2FK82o03g7YVh'),'zqH5hZX678s',4,'Gráficas. Ecuación de la recta'],
+  atomo:[P('iMrmU56GuzSt785LhOXCNF'),'MozcgfOypqs',21,'El átomo. Modelos atómicos'],
+  curio:[P('jYePd5z7ZkBIvFl-35IslC'),'_hE5fTjSRQE',27,'Curiosidades científicas'],
+  mist:[P('j6fcdTUi3XYCHVXjEYC3vt'),'9xaKwaogg_g',14,'Misterios de la ciencia'],
+  shorts:[P('jV01SNa3An49qhj8-RB-sP'),'vythlfoTImE',72,'Shorts'],
+  chorr:[P('gsRt2tZOxsIDXZvNmmcife'),'cl5QmGdcTe0',7,'Chorradas que me encantan'],
+  opos:[P('gJKZdg95shegJBcTIHQZtU'),'hPdY4Yy-1J8',2,'Oposiciones FyQ: problemas de examen'],
+  blog:[P('jAtI5_ouBDkPZelESkSe9D'),'RrqF_88ZOws',10,'Blog educativo con WordPress y vídeos educativos']
+};
+
+const COURSES = [
+ {id:'2-eso', name:'2 ESO', full:'Física y Química 2º ESO', color:'emerald', course:null, revisar:true,
+  note:'No hay en el canal una lista específica de 2º ESO. Propongo estas listas de iniciación; revisa cuáles encajan.',
+  topics:[
+   {t:'La medida: magnitudes, unidades y factores de conversión', pl:['fact'], k:'densidad SI cambio de unidades', revisar:true},
+   {t:'Gráficas y tablas de datos', pl:['graf'], k:'recta pendiente', revisar:true},
+   {t:'La materia y los gases', pl:['leyg'], k:'estados de agregación Boyle', revisar:true},
+   {t:'Energía, calor y temperatura', pl:['calor'], k:'calor específico cambios de estado', revisar:true}
+  ]},
+ {id:'3-eso', name:'3 ESO', full:'Física y Química 3º ESO', color:'cyan', course:'e3',
+  topics:[
+   {t:'Magnitudes, unidades y densidad', pl:['fact'], k:'factores de conversión'},
+   {t:'Gráficas en Física y Química', pl:['graf'], k:'ecuación de la recta'},
+   {t:'Leyes de los gases', pl:['leyg'], k:'Boyle Charles Gay-Lussac ley combinada'},
+   {t:'El átomo y los modelos atómicos', pl:['atomo'], k:'Thomson Rutherford Bohr isótopos'},
+   {t:'La tabla periódica', pl:['tabla'], k:'elementos grupos periodos'},
+   {t:'Formulación inorgánica', pl:['form'], k:'óxidos hidruros sales nomenclatura'}
+  ]},
+ {id:'4-eso', name:'4 ESO', full:'Física y Química 4º ESO', color:'sky', course:'e4',
+  topics:[
+   {t:'Cinemática: MRU y MRUA', pl:['mru'], k:'velocidad aceleración caída libre'},
+   {t:'Dinámica: leyes de Newton', pl:['newton'], k:'fuerzas rozamiento plano inclinado'},
+   {t:'MCU y gravitación', pl:['mcu'], k:'movimiento circular satélites'},
+   {t:'Presión y fluidos', pl:['pres'], k:'hidrostática Pascal Arquímedes'},
+   {t:'Trabajo y energía mecánica', pl:['trab'], k:'potencia conservación energía'},
+   {t:'Energía calorífica', pl:['calor'], k:'calor específico latente'},
+   {t:'Formulación inorgánica', pl:['form'], k:'óxidos sales nomenclatura'}
+  ]},
+ {id:'1-bach', name:'1 Bachillerato', full:'Física y Química 1º Bachillerato', color:'violet', course:'q1b', course2:'f1b',
+  topics:[
+   {t:'Teoría atómico-molecular', pl:['tam'], k:'leyes ponderales proporciones definidas mol'},
+   {t:'Composición centesimal y fórmulas', pl:['cc','fem'], k:'fórmula empírica molecular'},
+   {t:'Gases', pl:['gases','leyg'], k:'gases ideales PV=nRT Dalton presiones parciales'},
+   {t:'Disoluciones', pl:['dis'], k:'molaridad riqueza densidad dilución'},
+   {t:'Estequiometría', pl:['esteq'], k:'reactivo limitante rendimiento moles'},
+   {t:'Estructura atómica', pl:['estr'], k:'configuración electrónica'},
+   {t:'Cinemática en dos dimensiones', pl:['tiro'], k:'tiro parabólico horizontal vectores'},
+   {t:'Dinámica', pl:['newton'], k:'leyes de Newton rozamiento'},
+   {t:'Trabajo y energía', pl:['trab'], k:'energía mecánica conservación'},
+   {t:'Termoquímica', pl:['termo'], k:'entalpía Hess calor de reacción energía de enlace espontaneidad'}
+  ]},
+ {id:'quimica-2-bach', name:'Química 2 Bach', full:'Química 2º Bachillerato', color:'amber', course:'q2b',
+  topics:[
+   {t:'Estructura atómica y sistema periódico', pl:['estr','tabla'], k:'números cuánticos configuración electrónica propiedades periódicas'},
+   {t:'Enlace químico y fuerzas intermoleculares', pl:['enlace'], k:'Lewis TRPECV geometría polaridad Born-Haber'},
+   {t:'Termoquímica', pl:['termo'], k:'entalpía Hess entropía Gibbs espontaneidad'},
+   {t:'Cinética química', pl:['cin'], k:'velocidad de reacción orden energía de activación catalizador'},
+   {t:'Equilibrio químico y solubilidad', pl:['equi'], k:'Kc Kp Le Chatelier Ks precipitación'},
+   {t:'Reacciones ácido-base', pl:['acb','acbEn'], k:'pH Ka Kb hidrólisis valoraciones tampón'},
+   {t:'Reacciones redox', pl:['redox'], k:'ion-electrón pilas electrólisis Faraday'},
+   {t:'Química orgánica', pl:['org'], k:'formulación isomería reacciones polímeros'}
+  ]},
+ {id:'fisica-2-bach', name:'Física 2 Bach', full:'Física 2º Bachillerato', color:'rose', course:'f2b',
+  topics:[
+   {t:'Campo gravitatorio', pl:['grav'], k:'satélites Kepler energía potencial órbitas'},
+   {t:'Campo eléctrico', pl:['elec'], k:'Coulomb potencial cargas'},
+   {t:'Campo magnético e inducción', pl:['mag','ind'], k:'Lorentz Faraday Lenz'},
+   {t:'Vibraciones y ondas', pl:['mas','ondas'], k:'MAS ondas sonido Doppler intensidad'},
+   {t:'Óptica', pl:['opt','optg'], k:'espejos lentes refracción Snell lámina'},
+   {t:'Relatividad especial', pl:['rel'], k:'dilatación del tiempo contracción longitud'},
+   {t:'Física cuántica', pl:['cuant'], k:'efecto fotoeléctrico De Broglie dualidad'},
+   {t:'Física nuclear', pl:['nuc'], k:'defecto de masa desintegración radiactividad'}
+  ]}
+];
+const EXTRA = ['curio','mist','shorts','chorr','opos','blog'];
+const TABS = [['videos','Vídeos'],['apuntes','Apuntes'],['problemas','Problemas'],['examenes','Exámenes y PAU']];
+/* MATERIALES PDF por tema: 'curso/tema': [...] */
+const MATS = {
+  'quimica-2-bach/1':[
+    {code:"Q2B_T01_APU1",tipo:'apuntes',title:"Apuntes: estructura de la materia (desarrollo completo)",url:"materiales/quimica-2bach/Q2B_T01_APU1_estructura-atomica-desarrollo.pdf",pages:36,kb:700},
+    {code:"Q2B_T01_APU2",tipo:'apuntes',title:"Apuntes: estructura electrónica de los átomos",url:"materiales/quimica-2bach/Q2B_T01_APU2_estructura-electronica-de-los-atomos.pdf",pages:49,kb:993},
+    {code:"Q2B_T01_APU3",tipo:'apuntes',title:"Resumen: estructura electrónica y sistema periódico",url:"materiales/quimica-2bach/Q2B_T01_APU3_resumen-estructura-electronica-y-sistema-periodico.pdf",pages:29,kb:575},
+    {code:"Q2B_T01_APU4",tipo:'apuntes',title:"Apuntes: el sistema periódico",url:"materiales/quimica-2bach/Q2B_T01_APU4_sistema-periodico.pdf",pages:20,kb:535},
+    {code:"Q2B_T01_APU5",tipo:'apuntes',title:"Apuntes: propiedades periódicas",url:"materiales/quimica-2bach/Q2B_T01_APU5_propiedades-periodicas.pdf",pages:5,kb:108},
+    {code:"Q2B_T01_APU6",tipo:'apuntes',title:"Esquema: carga nuclear efectiva y variación de las propiedades periódicas",url:"materiales/quimica-2bach/Q2B_T01_APU6_variacion-propiedades-periodicas.pdf",pages:4,kb:199},
+    {code:"Q2B_T01_APU7",tipo:'apuntes',title:"Presentación de clase: estructura atómica",url:"materiales/quimica-2bach/Q2B_T01_APU7_presentacion-estructura-atomica.pdf",pages:64,kb:2645},
+    {code:"Q2B_T01_APU8",tipo:'apuntes',title:"Presentación de clase: sistema periódico",url:"materiales/quimica-2bach/Q2B_T01_APU8_presentacion-sistema-periodico.pdf",pages:68,kb:2605},
+    {code:"Q2B_T01_PRO1",tipo:'problemas',title:"Problemas de estructura atómica (Planck, efecto fotoeléctrico, Bohr)",url:"materiales/quimica-2bach/Q2B_T01_PRO1_estructura-atomica-planck-bohr.pdf",pages:4,kb:136},
+    {code:"Q2B_T01_PRO2",tipo:'problemas',title:"Ejercicios de teoría atómica y sistema periódico: enunciados",url:"materiales/quimica-2bach/Q2B_T01_PRO2_ejercicios-atomo-y-tabla.pdf",pages:11,kb:257},
+    {code:"Q2B_T01_SOL2",tipo:'problemas',title:"Ejercicios de teoría atómica y sistema periódico: resueltos paso a paso",url:"materiales/quimica-2bach/Q2B_T01_SOL2_ejercicios-atomo-y-tabla-resueltos.pdf",pages:35,kb:366},
+    {code:"Q2B_T01_PRO3",tipo:'problemas',title:"Teoría atómica: colección de problemas",url:"materiales/quimica-2bach/Q2B_T01_PRO3_teoria-atomica-problemas.pdf",pages:11,kb:302},
+    {code:"Q2B_T01_PRO4",tipo:'problemas',title:"Configuraciones electrónicas y sistema periódico",url:"materiales/quimica-2bach/Q2B_T01_PRO4_configuraciones-electronicas.pdf",pages:4,kb:70},
+    {code:"Q2B_T01_PRO5",tipo:'problemas',title:"Sistema periódico: cuestiones y problemas",url:"materiales/quimica-2bach/Q2B_T01_PRO5_sistema-periodico-problemas.pdf",pages:3,kb:97},
+    {code:"Q2B_T01_PRO6",tipo:'problemas',title:"El átomo y el sistema periódico: problemas",url:"materiales/quimica-2bach/Q2B_T01_PRO6_atomo-y-tabla-periodica.pdf",pages:3,kb:90},
+    {code:"Q2B_T01_SOL6",tipo:'problemas',title:"Ejercicios de átomo y tabla periódica resueltos (Aules)",url:"materiales/quimica-2bach/Q2B_T01_SOL6_atomo-y-tabla-resueltos-aules.pdf",pages:21,kb:4155},
+    {code:"Q2B_T01_PRO7",tipo:'problemas',title:"Propiedades periódicas: enunciados",url:"materiales/quimica-2bach/Q2B_T01_PRO7_propiedades-periodicas-ejercicios.pdf",pages:1,kb:78},
+    {code:"Q2B_T01_SOL7",tipo:'problemas',title:"Propiedades periódicas: resueltos",url:"materiales/quimica-2bach/Q2B_T01_SOL7_propiedades-periodicas-resueltos.pdf",pages:7,kb:141},
+    {code:"Q2B_T01_TEST",tipo:'problemas',title:"Cuestionario tipo test: átomo y sistema periódico",url:"materiales/quimica-2bach/Q2B_T01_TEST_cuestionario-atomo-y-tabla.pdf",pages:8,kb:104},
+    {code:"Q2B_T01_SOLT",tipo:'problemas',title:"Cuestionario tipo test: soluciones",url:"materiales/quimica-2bach/Q2B_T01_SOLT_cuestionario-atomo-y-tabla-resuelto.pdf",pages:9,kb:110},
+    {code:"Q2B_T01_PAU1",tipo:'examenes',title:"PAU Comunitat Valenciana 2020–2023: configuración electrónica y propiedades (enunciados)",url:"materiales/quimica-2bach/Q2B_T01_PAU1_pau-cv-2020-2023-enunciados.pdf",pages:3,kb:172},
+    {code:"Q2B_T01_PAU2",tipo:'examenes',title:"PAU Comunitat Valenciana 2020–2023: configuración electrónica y propiedades (resueltas)",url:"materiales/quimica-2bach/Q2B_T01_PAU2_pau-cv-2020-2023-resueltas.pdf",pages:17,kb:656},
+    {code:"Q2B_T01_PAU3",tipo:'examenes',title:"PAU Comunitat Valenciana 2004–2021: estructura atómica y propiedades periódicas",url:"materiales/quimica-2bach/Q2B_T01_PAU3_pau-cv-2004-2021-propiedades-periodicas.pdf",pages:8,kb:182},
+    {code:"Q2B_T01_EX14",tipo:'examenes',title:"Examen de estructura atómica y sistema periódico 2014",url:"materiales/quimica-2bach/Q2B_T01_EX14_examen-2014.pdf",pages:2,kb:90},
+    {code:"Q2B_T01_EX17",tipo:'examenes',title:"Examen de estructura atómica y sistema periódico 2017",url:"materiales/quimica-2bach/Q2B_T01_EX17_examen-2017.pdf",pages:2,kb:63},
+    {code:"Q2B_T01_EX20",tipo:'examenes',title:"Examen de estructura atómica 2020",url:"materiales/quimica-2bach/Q2B_T01_EX20_examen-2020.pdf",pages:1,kb:78},
+    {code:"Q2B_T01_EX21",tipo:'examenes',title:"Examen de los temas 1 y 2, 2021",url:"materiales/quimica-2bach/Q2B_T01_EX21_examen-2021.pdf",pages:4,kb:127},
+    {code:"Q2B_T01_EX24",tipo:'examenes',title:"Examen de los temas 1 y 2, 2024",url:"materiales/quimica-2bach/Q2B_T01_EX24_examen-2024.pdf",pages:1,kb:175},
+    {code:"Q2B_T01_EXA",tipo:'examenes',title:"Examen: estructura de la materia (modelo sin fecha)",url:"materiales/quimica-2bach/Q2B_T01_EXA_examen-estructura-de-la-materia.pdf",pages:1,kb:54},
+    {code:"Q2B_T01_EXB",tipo:'examenes',title:"Examen de los temas 1 y 2 (modelo sin fecha)",url:"materiales/quimica-2bach/Q2B_T01_EXB_examen-temas-1-y-2.pdf",pages:1,kb:60}],
+  '1-bach/6':[
+    {code:"B1_T06_APU1",tipo:'apuntes',title:"Apuntes: propiedades periódicas (1º Bach)",url:"materiales/1-bach/B1_T06_APU1_propiedades-periodicas.pdf",pages:5,kb:38},
+    {code:"B1_T06_PRO1",tipo:'problemas',title:"Problemas de estructura atómica (1º Bach)",url:"materiales/1-bach/B1_T06_PRO1_problemas-estructura-atomica.pdf",pages:3,kb:299},
+    {code:"B1_T06_EX1",tipo:'examenes',title:"Examen de estructura atómica, modelo 1",url:"materiales/1-bach/B1_T06_EX1_examen-estructura-atomica-1.pdf",pages:2,kb:84},
+    {code:"B1_T06_EX2",tipo:'examenes',title:"Examen de estructura atómica, modelo 2",url:"materiales/1-bach/B1_T06_EX2_examen-estructura-atomica-2.pdf",pages:2,kb:86}],
+  '1-bach/1':[
+    {code:"B1_T01_EX1",tipo:'examenes',title:"Examen: la materia (1º Bach)",url:"materiales/1-bach/B1_T01_EX1_examen-la-materia.pdf",pages:1,kb:68}],
+  'quimica-2-bach/2':[
+    {code:"Q2B_T02_APU1",tipo:'apuntes',title:"Apuntes completos de enlace químico (58 págs.)",url:"materiales/quimica-2bach/Q2B_T02_APU1_apuntes-enlace-quimico.pdf",pages:58,kb:1840},
+    {code:"Q2B_T02_APU2",tipo:'apuntes',title:"Presentación de clase: enlace químico (108 diapositivas)",url:"materiales/quimica-2bach/Q2B_T02_APU2_presentacion-enlace-quimico.pdf",pages:108,kb:6502},
+    {code:"Q2B_T02_APU3",tipo:'apuntes',title:"Presentación: hibridación de orbitales",url:"materiales/quimica-2bach/Q2B_T02_APU3_hibridacion.pdf",pages:16,kb:1220},
+    {code:"Q2B_T02_APU4",tipo:'apuntes',title:"Presentación: TRPECV, geometría y polaridad",url:"materiales/quimica-2bach/Q2B_T02_APU4_trpecv-y-polaridad.pdf",pages:16,kb:859},
+    {code:"Q2B_T02_APU5",tipo:'apuntes',title:"Tabla resumen: tipos de sustancias según su enlace",url:"materiales/quimica-2bach/Q2B_T02_APU5_tabla-tipos-de-sustancias.pdf",pages:1,kb:53},
+    {code:"Q2B_T02_PRO1",tipo:'problemas',title:"Boletín de problemas de enlace químico",url:"materiales/quimica-2bach/Q2B_T02_PRO1_boletin-enlace-quimico.pdf",pages:6,kb:173},
+    {code:"Q2B_T02_PRO2",tipo:'problemas',title:"Actividades del ciclo de Born-Haber",url:"materiales/quimica-2bach/Q2B_T02_PRO2_ciclo-de-born-haber.pdf",pages:2,kb:83},
+    {code:"Q2B_T02_PRO3",tipo:'problemas',title:"Problemas de TEV e hibridación",url:"materiales/quimica-2bach/Q2B_T02_PRO3_teoria-enlace-valencia-hibridacion.pdf",pages:3,kb:112},
+    {code:"Q2B_T02_PRO4",tipo:'problemas',title:"Fuerzas intermoleculares: enunciados",url:"materiales/quimica-2bach/Q2B_T02_PRO4_fuerzas-intermoleculares.pdf",pages:1,kb:63},
+    {code:"Q2B_T02_SOL4",tipo:'problemas',title:"Fuerzas intermoleculares: resueltos",url:"materiales/quimica-2bach/Q2B_T02_SOL4_fuerzas-intermoleculares-resuelto.pdf",pages:3,kb:78},
+    {code:"Q2B_T02_PRO5",tipo:'problemas',title:"Fuerzas intermoleculares y temperaturas de ebullición",url:"materiales/quimica-2bach/Q2B_T02_PRO5_temperaturas-de-ebullicion.pdf",pages:1,kb:65},
+    {code:"Q2B_T02_PRO6",tipo:'problemas',title:"Actividades de enlace químico: enunciados",url:"materiales/quimica-2bach/Q2B_T02_PRO6_actividades-enlace.pdf",pages:1,kb:51},
+    {code:"Q2B_T02_SOL6",tipo:'problemas',title:"Actividades de enlace químico resueltas (desde la 28)",url:"materiales/quimica-2bach/Q2B_T02_SOL6_actividades-enlace-resueltas.pdf",pages:4,kb:118},
+    {code:"Q2B_T02_PRO7",tipo:'problemas',title:"Estructuras de Lewis, geometría y polaridad: 47 especies de la PAU resueltas",url:"materiales/quimica-2bach/Q2B_T02_PRO7_estructuras-de-lewis-pau.pdf",pages:113,kb:2630},
+    {code:"Q2B_T02_PAU1",tipo:'examenes',title:"PAU Comunitat Valenciana: preguntas de enlace (enunciados)",url:"materiales/quimica-2bach/Q2B_T02_PAU1_pau-comunitat-valenciana-enunciados.pdf",pages:6,kb:141},
+    {code:"Q2B_T02_PAU2",tipo:'examenes',title:"PAU Comunitat Valenciana 2012–2026: preguntas de enlace resueltas paso a paso",url:"materiales/quimica-2bach/Q2B_T02_PAU2_pau-comunitat-valenciana-resueltas.pdf",pages:42,kb:2764},
+    {code:"Q2B_T02_EX14",tipo:'examenes',title:"Examen de enlace químico 2014",url:"materiales/quimica-2bach/Q2B_T02_EX14_examen-2014.pdf",pages:1,kb:68},
+    {code:"Q2B_T02_EX18",tipo:'examenes',title:"Examen de enlace químico 2018",url:"materiales/quimica-2bach/Q2B_T02_EX18_examen-2018.pdf",pages:2,kb:70},
+    {code:"Q2B_T02_EX20",tipo:'examenes',title:"Examen de enlace químico 2020",url:"materiales/quimica-2bach/Q2B_T02_EX20_examen-2020.pdf",pages:3,kb:105},
+    {code:"Q2B_T02_EX21",tipo:'examenes',title:"Examen de enlace químico 2021",url:"materiales/quimica-2bach/Q2B_T02_EX21_examen-2021.pdf",pages:3,kb:112},
+    {code:"Q2B_T02_EX22",tipo:'examenes',title:"Examen de enlace químico 2022",url:"materiales/quimica-2bach/Q2B_T02_EX22_examen-2022.pdf",pages:3,kb:102},
+    {code:"Q2B_T02_EX23",tipo:'examenes',title:"Examen de enlace químico 2023",url:"materiales/quimica-2bach/Q2B_T02_EX23_examen-2023.pdf",pages:1,kb:73},
+    {code:"Q2B_T02_EX24",tipo:'examenes',title:"Examen de enlace químico 2024",url:"materiales/quimica-2bach/Q2B_T02_EX24_examen-2024.pdf",pages:1,kb:79},
+    {code:"Q2B_T02_EX00",tipo:'examenes',title:"Examen de enlace químico (modelo sin fecha)",url:"materiales/quimica-2bach/Q2B_T02_EX00_examen-modelo.pdf",pages:2,kb:52}],
+  'quimica-2-bach/3':[
+    {code:"Q2B_T03_APU1",tipo:'apuntes',title:"Resumen de termoquímica",url:"materiales/quimica-2bach/Q2B_T03_APU1_resumen-termoquimica.pdf",pages:5,kb:286},
+    {code:"Q2B_T03_APU2",tipo:'apuntes',title:"Presentación visual: descifrando el código de las reacciones (ΔH, T, ΔS)",url:"materiales/quimica-2bach/Q2B_T03_APU2_presentacion-descifrando-la-termoquimica.pdf",pages:15,kb:2912},
+    {code:"Q2B_T03_APU3",tipo:'apuntes',title:"Presentación visual: energía y espontaneidad",url:"materiales/quimica-2bach/Q2B_T03_APU3_presentacion-energia-y-espontaneidad.pdf",pages:15,kb:2398},
+    {code:"Q2B_T03_APU4",tipo:'apuntes',title:"Presentación visual: termoquímica, dominio práctico",url:"materiales/quimica-2bach/Q2B_T03_APU4_presentacion-dominio-practico.pdf",pages:14,kb:2044},
+    {code:"Q2B_T03_APU5",tipo:'apuntes',title:"Infografía: termoquímica",url:"materiales/quimica-2bach/Q2B_T03_APU5_infografia-termoquimica.pdf",pages:1,kb:512},
+    {code:"Q2B_T03_APU6",tipo:'apuntes',title:"Infografía: termoquímica en una página",url:"materiales/quimica-2bach/Q2B_T03_APU6_infografia-termoquimica-resumen-total.pdf",pages:1,kb:489},
+    {code:"Q2B_T03_APU7",tipo:'apuntes',title:"Infografía: la ley de Hess (práctica de laboratorio)",url:"materiales/quimica-2bach/Q2B_T03_APU7_infografia-ley-de-hess.pdf",pages:1,kb:475},
+    {code:"Q2B_T03_LAB1",tipo:'apuntes',title:"Práctica de laboratorio: comprobación de la ley de Hess",url:"materiales/quimica-2bach/Q2B_T03_LAB1_practica-ley-de-hess.pdf",pages:4,kb:206},
+    {code:"Q2B_T03_PRO1",tipo:'problemas',title:"Colección de 20 ejercicios de la ley de Hess",url:"materiales/quimica-2bach/Q2B_T03_PRO1_ley-de-hess-20-ejercicios.pdf",pages:5,kb:102},
+    {code:"Q2B_T03_PRO2",tipo:'problemas',title:"Ejercicios: ley de Hess y energías de enlace",url:"materiales/quimica-2bach/Q2B_T03_PRO2_hess-y-energias-de-enlace.pdf",pages:3,kb:919},
+    {code:"Q2B_T03_PRO3",tipo:'problemas',title:"Problemas de termoquímica (colección de clase)",url:"materiales/quimica-2bach/Q2B_T03_PRO3_problemas-termoquimica.pdf",pages:2,kb:84},
+    {code:"Q2B_T03_SOL3",tipo:'problemas',title:"Colección de 16 problemas de termoquímica: resolución detallada",url:"materiales/quimica-2bach/Q2B_T03_SOL3_problemas-termoquimica-resueltos.pdf",pages:12,kb:161},
+    {code:"Q2B_T03_PRO4",tipo:'problemas',title:"Problemas contextualizados de termoquímica (autoclave de propano…)",url:"materiales/quimica-2bach/Q2B_T03_PRO4_problemas-contextualizados.pdf",pages:2,kb:94},
+    {code:"Q2B_T03_PRO5",tipo:'problemas',title:"Ejercicios de termoquímica (agua oxigenada y otros)",url:"materiales/quimica-2bach/Q2B_T03_PRO5_agua-oxigenada-y-otros.pdf",pages:2,kb:38},
+    {code:"Q2B_T03_PRO6",tipo:'problemas',title:"Termodinámica: problemas de calor y temperatura",url:"materiales/quimica-2bach/Q2B_T03_PRO6_termodinamica-problemas.pdf",pages:3,kb:99},
+    {code:"Q2B_T03_PAU1",tipo:'examenes',title:"PAU de termoquímica: enunciados",url:"materiales/quimica-2bach/Q2B_T03_PAU1_pau-termoquimica-enunciados.pdf",pages:10,kb:291},
+    {code:"Q2B_T03_PAU2",tipo:'examenes',title:"Problemas de PAU de termoquímica resueltos paso a paso, parte 1 de 2",url:"materiales/quimica-2bach/Q2B_T03_PAU2_pau-termoquimica-resueltos-parte1.pdf",pages:219,kb:5480},
+    {code:"Q2B_T03_PAU3",tipo:'examenes',title:"Problemas de PAU de termoquímica resueltos paso a paso, parte 2 de 2",url:"materiales/quimica-2bach/Q2B_T03_PAU3_pau-termoquimica-resueltos-parte2.pdf",pages:221,kb:6075},
+    {code:"Q2B_T03_EX00A",tipo:'examenes',title:"Examen de termoquímica, modelo 1",url:"materiales/quimica-2bach/Q2B_T03_EX00A_examen-termoquimica-modelo-1.pdf",pages:1,kb:39},
+    {code:"Q2B_T03_EX00B",tipo:'examenes',title:"Examen de termoquímica, modelo 2",url:"materiales/quimica-2bach/Q2B_T03_EX00B_examen-termoquimica-modelo-2.pdf",pages:1,kb:54},
+    {code:"Q2B_T03_EX00C",tipo:'examenes',title:"Examen de termodinámica, modelo 3",url:"materiales/quimica-2bach/Q2B_T03_EX00C_examen-termodinamica-modelo-3.pdf",pages:1,kb:33},
+    {code:"Q2B_T03_EX24",tipo:'examenes',title:"Examen de termoquímica y cinética 2024",url:"materiales/quimica-2bach/Q2B_T03_EX24_examen-termoquimica-y-cinetica-2024.pdf",pages:2,kb:116},
+    {code:"Q2B_T03_CTRL24",tipo:'examenes',title:"Control de termoquímica (curso 2024-25)",url:"materiales/quimica-2bach/Q2B_T03_CTRL24_control-termoquimica-2024.pdf",pages:4,kb:61}],
+  '1-bach/10':[
+    {code:"B1_T10_PRO1",tipo:'problemas',title:"Problemas de termoquímica (1º Bach)",url:"materiales/1-bach/B1_T10_PRO1_problemas-termoquimica.pdf",pages:2,kb:160},
+    {code:"B1_T10_PRO2",tipo:'problemas',title:"Problemas de termoquímica tipo PAU (1º Bach)",url:"materiales/1-bach/B1_T10_PRO2_problemas-termoquimica-pau.pdf",pages:4,kb:112},
+    {code:"B1_T10_PRO3",tipo:'problemas',title:"Problemas de termodinámica de la PAU de Madrid",url:"materiales/1-bach/B1_T10_PRO3_problemas-pau-madrid.pdf",pages:5,kb:592},
+    {code:"B1_T10_PRO4",tipo:'problemas',title:"Problema de espontaneidad (cloruro de nitrosilo)",url:"materiales/1-bach/B1_T10_PRO4_problema-de-espontaneidad.pdf",pages:1,kb:52},
+    {code:"B1_T10_EX20",tipo:'examenes',title:"Examen de termodinámica 2020",url:"materiales/1-bach/B1_T10_EX20_examen-termodinamica-2020.pdf",pages:2,kb:75},
+    {code:"B1_T10_EX21A",tipo:'examenes',title:"Examen de termoquímica 2021 (modelo A)",url:"materiales/1-bach/B1_T10_EX21A_examen-termoquimica-2021-A.pdf",pages:1,kb:76},
+    {code:"B1_T10_EX21B",tipo:'examenes',title:"Examen de termoquímica 2021 (modelo B)",url:"materiales/1-bach/B1_T10_EX21B_examen-termoquimica-2021-B.pdf",pages:1,kb:79},
+    {code:"B1_T10_EX22",tipo:'examenes',title:"Examen de termoquímica 2022",url:"materiales/1-bach/B1_T10_EX22_examen-termoquimica-2022.pdf",pages:1,kb:92},
+    {code:"B1_T10_EX24",tipo:'examenes',title:"Examen de termoquímica 2024",url:"materiales/1-bach/B1_T10_EX24_examen-termoquimica-2024.pdf",pages:2,kb:74},
+    {code:"B1_T10_EX25",tipo:'examenes',title:"Examen de termoquímica 2025",url:"materiales/1-bach/B1_T10_EX25_examen-termoquimica-2025.pdf",pages:2,kb:75}],
+  'quimica-2-bach/4':[
+    {code:"Q2B_T04_APU1",tipo:'apuntes',title:"Apuntes completos de cinética química (43 págs.)",url:"materiales/quimica-2bach/Q2B_T04_APU1_apuntes-cinetica-quimica.pdf",pages:43,kb:1546},
+    {code:"Q2B_T04_APU2",tipo:'apuntes',title:"Cinética química: apuntes para el alumno (26 págs.)",url:"materiales/quimica-2bach/Q2B_T04_APU2_cinetica-quimica-alumnos.pdf",pages:26,kb:427},
+    {code:"Q2B_T04_APU3",tipo:'apuntes',title:"Presentación de clase: cinética química (53 diapositivas)",url:"materiales/quimica-2bach/Q2B_T04_APU3_presentacion-cinetica.pdf",pages:53,kb:2102},
+    {code:"Q2B_T04_APU4",tipo:'apuntes',title:"Presentación: factores que afectan a la velocidad de reacción",url:"materiales/quimica-2bach/Q2B_T04_APU4_presentacion-factores-velocidad.pdf",pages:20,kb:955},
+    {code:"Q2B_T04_APU5",tipo:'apuntes',title:"Presentación visual: el código de la velocidad",url:"materiales/quimica-2bach/Q2B_T04_APU5_presentacion-el-codigo-de-la-velocidad.pdf",pages:14,kb:2795},
+    {code:"Q2B_T04_APU6",tipo:'apuntes',title:"Infografía: cinética química",url:"materiales/quimica-2bach/Q2B_T04_APU6_infografia-cinetica.pdf",pages:1,kb:538},
+    {code:"Q2B_T04_LAB1",tipo:'apuntes',title:"Práctica de laboratorio: efecto de la concentración en la velocidad de reacción",url:"materiales/quimica-2bach/Q2B_T04_LAB1_practica-factores-velocidad.pdf",pages:4,kb:77},
+    {code:"Q2B_T04_PRO1",tipo:'problemas',title:"Ejercicios de cinética: velocidad de las reacciones químicas (14 págs.)",url:"materiales/quimica-2bach/Q2B_T04_PRO1_ejercicios-cinetica.pdf",pages:14,kb:210},
+    {code:"Q2B_T04_PRO2",tipo:'problemas',title:"Ejercicios de reacciones elementales y ecuación de velocidad",url:"materiales/quimica-2bach/Q2B_T04_PRO2_reacciones-elementales.pdf",pages:1,kb:83},
+    {code:"Q2B_T04_PRO3",tipo:'problemas',title:"Ejercicio 6 del dosier resuelto (síntesis del amoníaco)",url:"materiales/quimica-2bach/Q2B_T04_PRO3_ejercicio-6-dossier.pdf",pages:1,kb:56},
+    {code:"Q2B_T04_PRO4",tipo:'problemas',title:"Determinación gráfica de la energía de activación (Arrhenius)",url:"materiales/quimica-2bach/Q2B_T04_PRO4_energia-de-activacion-grafica.pdf",pages:2,kb:170},
+    {code:"Q2B_T04_PRO5",tipo:'problemas',title:"Actividades de cinética química: ecuación de velocidad y más",url:"materiales/quimica-2bach/Q2B_T04_PRO5_actividades-cinetica.pdf",pages:8,kb:409},
+    {code:"Q2B_T04_PAU1",tipo:'examenes',title:"PAU Comunitat Valenciana: cuestiones de cinética (hasta julio 2025)",url:"materiales/quimica-2bach/Q2B_T04_PAU1_pau-cv-cinetica-resueltas.pdf",pages:7,kb:145},
+    {code:"Q2B_T04_PAU2",tipo:'examenes',title:"PAU Comunitat Valenciana 2022–2024: cuestiones de cinética (enunciados)",url:"materiales/quimica-2bach/Q2B_T04_PAU2_pau-cv-2022-2024-enunciados.pdf",pages:2,kb:458},
+    {code:"Q2B_T04_EX14",tipo:'examenes',title:"Examen de termoquímica y cinética 2014",url:"materiales/quimica-2bach/Q2B_T04_EX14_examen-termoquimica-y-cinetica-2014.pdf",pages:2,kb:89},
+    {code:"Q2B_T04_EX20",tipo:'examenes',title:"Examen de cinética química 2020",url:"materiales/quimica-2bach/Q2B_T04_EX20_examen-cinetica-2020.pdf",pages:2,kb:99},
+    {code:"Q2B_T04_EX22",tipo:'examenes',title:"Examen de cinética química 2022",url:"materiales/quimica-2bach/Q2B_T04_EX22_examen-cinetica-2022.pdf",pages:2,kb:109},
+    {code:"Q2B_T04_EX24A",tipo:'examenes',title:"Examen de cinética y termoquímica 2024",url:"materiales/quimica-2bach/Q2B_T04_EX24A_examen-cinetica-y-termoquimica-2024.pdf",pages:2,kb:125},
+    {code:"Q2B_T04_EX24B",tipo:'examenes',title:"Examen de cinética química (curso 2024-25)",url:"materiales/quimica-2bach/Q2B_T04_EX24B_examen-cinetica-2024-25.pdf",pages:2,kb:83},
+    {code:"Q2B_T04_EX25",tipo:'examenes',title:"Examen de cinética química (curso 2025-26)",url:"materiales/quimica-2bach/Q2B_T04_EX25_examen-cinetica-2025-26.pdf",pages:2,kb:87},
+    {code:"Q2B_T04_CTRL26",tipo:'examenes',title:"Control de cinética química (curso 2025-26)",url:"materiales/quimica-2bach/Q2B_T04_CTRL26_control-cinetica-2025-26.pdf",pages:2,kb:211},
+    {code:"Q2B_T04_CTRL26R",tipo:'examenes',title:"Control de cinética 2025-26: resuelto",url:"materiales/quimica-2bach/Q2B_T04_CTRL26R_control-cinetica-resuelto.pdf",pages:16,kb:513},
+    {code:"Q2B_T04_CTRL26S",tipo:'examenes',title:"Control de cinética 2025-26: soluciones detalladas",url:"materiales/quimica-2bach/Q2B_T04_CTRL26S_control-cinetica-soluciones-detalladas.pdf",pages:14,kb:307}],
+  '1-bach/4':[
+    {code:"B1_T04_APU1",tipo:'apuntes',title:"Presentación: solubilidad y propiedades coligativas",url:"materiales/1-bach/B1_T04_APU1_solubilidad-y-propiedades-coligativas.pdf",pages:24,kb:1348}]
+};
+/* Color de cada curso: c = color fuerte (detalles), t = fondo pastel (siempre con texto oscuro) */
+const LOOK = {
+  '2-eso':{c:'#15803d',t:'#dcfce7',lv:'2º ESO',sub:'Física y Química'}, '3-eso':{c:'#0369a1',t:'#dbeafe',lv:'3º ESO',sub:'Física y Química'}, '4-eso':{c:'#6d28d9',t:'#ede9fe',lv:'4º ESO',sub:'Física y Química'},
+  '1-bach':{c:'#c2410c',t:'#ffedd5',lv:'1º Bach',sub:'Física y Química'}, 'quimica-2-bach':{c:'#be185d',t:'#fce7f3',lv:'Química',sub:'2º Bachillerato'}, 'fisica-2-bach':{c:'#a16207',t:'#fef3c7',lv:'Física',sub:'2º Bachillerato'}
+};
+const CODE = {'2-eso':'E2','3-eso':'E3','4-eso':'E4','1-bach':'B1','quimica-2-bach':'Q2B','fisica-2-bach':'F2B'};
+const sty = id => `--c:${LOOK[id].c};--t:${LOOK[id].t}`;
+
+/* ===================== utilidades ===================== */
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm = s => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+const code = (c,i) => CODE[c.id] + '_T' + String(i+1).padStart(2,'0');
+const cnt = keys => keys.reduce((s,k)=> s + (L[k][2]||0), 0);
+const vids = c => (c.course?L[c.course][2]:0) + (c.course2?L[c.course2][2]:0) || cnt([...new Set(c.topics.flatMap(t=>t.pl))]);
+const mats = (c,i) => MATS[c.id+'/'+(i+1)] || [];
+const nmat = c => c.topics.reduce((s,t,i)=>s+mats(c,i).length,0);
+const size = kb => kb>=1024 ? (kb/1024).toFixed(1).replace('.',',')+' MB' : kb+' KB';
+const plural = (n,a,b) => n===1?a:b;
+const app = document.getElementById('app');
+const SRCH = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1d1b2e" stroke-width="2.8"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>`;
+let tab = 'videos';
+
+function card(key){
+  const [id, first, n, title] = L[key];
+  return `<div class="card">
+    <button class="ph" data-play="${esc(id)}" aria-label="Reproducir ${esc(title)}">
+      <img src="https://i.ytimg.com/vi/${esc(first)}/hqdefault.jpg" alt="" loading="lazy">
+      <span class="pl"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span>
+      ${n?`<span class="n">${n} ${plural(n,'vídeo','vídeos')}</span>`:''}</button>
+    <div class="cb"><p>${esc(title)}</p><a href="https://www.youtube.com/playlist?list=${esc(id)}" target="_blank" rel="noopener">YouTube ↗</a></div></div>`;
+}
+
+/* ===================== menús ===================== */
+function menus(cur){
+  document.getElementById('desk').innerHTML = COURSES.map(c => `
+    <div class="ddw ${c.id.includes('2-bach')||c.id==='1-bach'?'r':''}" style="${sty(c.id)}">
+      <button class="ddb ${c.id===cur?'cur':''}" aria-haspopup="true"><span class="dot"></span>${esc(c.name)}</button>
+      <div class="dd"><div class="ddp">
+        <a class="all" href="#${c.id}">${esc(c.full)}<span>Ver curso →</span></a>
+        ${c.topics.map((t,i)=>`<a href="#${c.id}/${i+1}"><b>${i+1}</b><span>${esc(t.t)}</span></a>`).join('')}
+      </div></div></div>`).join('');
+  document.getElementById('mob').innerHTML = COURSES.map(c => `
+    <details style="${sty(c.id)}"><summary><span class="dot"></span>${esc(c.name)}</summary>
+      <a href="#${c.id}">Ver todo el curso →</a>
+      ${c.topics.map((t,i)=>`<a href="#${c.id}/${i+1}">${i+1}. ${esc(t.t)}</a>`).join('')}</details>`).join('');
+}
+
+/* ===================== buscador (temas y documentos) ===================== */
+const INDEX = [];
+COURSES.forEach(c => c.topics.forEach((t,i) => {
+  INDEX.push({kind:'Temas', c, href:`#${c.id}/${i+1}`, label:t.t, sub:`${c.full} · Tema ${i+1}`,
+    hay:norm([t.t,t.k,t.pl.map(k=>L[k][3]).join(' '),c.full,code(c,i)].join(' '))});
+  mats(c,i).forEach(m => INDEX.push({kind:'Documentos', c, href:`#${c.id}/${i+1}`, tab:m.tipo, label:m.title, sub:`${c.name} · Tema ${i+1} · ${m.code}`, hay:norm(m.title+' '+m.code+' '+t.t)}));
+}));
+const sbox = id => `<div class="sbox">${SRCH}<input id="${id}" type="search" placeholder="¿Qué buscas? pH, Hess, Bohr…" aria-label="Buscar en la web" autocomplete="off"><div class="sres" id="${id}-r"></div></div>`;
+function bindSearch(id){
+  const inp = document.getElementById(id), box = document.getElementById(id+'-r');
+  inp.addEventListener('input', () => {
+    const q = norm(inp.value.trim()); if(!q){ box.classList.remove('on'); return; }
+    const w = q.split(/\s+/), hits = INDEX.filter(x => w.every(v => x.hay.includes(v)));
+    const g = k => hits.filter(h=>h.kind===k).slice(0,k==='Temas'?8:20);
+    const row = h => `<a href="${h.href}" ${h.tab?`data-go="${h.tab}"`:''} style="${sty(h.c.id)}"><span class="dot"></span><span><b>${esc(h.label)}</b><small>${esc(h.sub)}</small></span></a>`;
+    const T = g('Temas'), D = g('Documentos');
+    box.innerHTML = (T.length||D.length) ? (T.length?`<p class="k">Temas</p>${T.map(row).join('')}`:'') + (D.length?`<p class="k">Documentos</p>${D.map(row).join('')}`:'')
+      : `<p style="padding:10px 12px;margin:0;color:#555a6e;font-weight:700">Nada con «${esc(inp.value)}». Prueba otra palabra.</p>`;
+    box.classList.add('on');
+  });
+}
+
+/* Dibujo de la portada: átomo, matraz y onda */
+const DOODLE = `<svg class="doodle" viewBox="0 0 520 420" role="img" aria-label="Dibujo de un átomo, un matraz y una onda con fórmulas de física y química">
+  <rect x="20" y="20" width="480" height="380" rx="34" fill="#245746" stroke="#1d1b2e" stroke-width="4"/>
+  <rect x="20" y="370" width="480" height="30" rx="0" fill="#b07a3c"/><rect x="20" y="370" width="480" height="30" rx="14" fill="none" stroke="#1d1b2e" stroke-width="4"/>
+  <g fill="none" stroke-linecap="round" stroke-width="4">
+    <g stroke="#f2f1ea"><ellipse cx="150" cy="150" rx="92" ry="32"/><ellipse cx="150" cy="150" rx="92" ry="32" transform="rotate(60 150 150)"/><ellipse cx="150" cy="150" rx="92" ry="32" transform="rotate(-60 150 150)"/></g>
+    <path d="M330 250 q20 -40 40 0 t40 0 t40 0" stroke="#7dd3fc"/>
+    <path d="M118 262 v34 l-34 52 h96 l-34 -52 v-34 z" stroke="#f2f1ea"/><path d="M96 330 h72" stroke="#f9a8d4"/>
+  </g>
+  <circle cx="150" cy="150" r="16" fill="#f9a8d4"/><circle cx="242" cy="150" r="8" fill="#fde047"/><circle cx="104" cy="70" r="8" fill="#7dd3fc"/><circle cx="104" cy="230" r="8" fill="#bef264"/>
+  <path d="M90 342 h84 l-10 -12 h-64z" fill="#f9a8d4" opacity=".85"/>
+  <g font-family="Fredoka, sans-serif" font-weight="600">
+    <text x="300" y="92" font-size="38" fill="#fde047">E = mc²</text>
+    <text x="300" y="150" font-size="30" fill="#f2f1ea">F = m · a</text>
+    <text x="300" y="205" font-size="28" fill="#bef264">PV = nRT</text>
+    <text x="300" y="318" font-size="24" fill="#f9a8d4">ΔG = ΔH − TΔS</text>
+  </g>
+</svg>`;
+
+/* ===================== portada ===================== */
+function home(){
+  const temas = COURSES.reduce((s,c)=>s+c.topics.length,0), docs = COURSES.reduce((s,c)=>s+nmat(c),0);
+  app.innerHTML = `
+  <section class="hero"><div class="wrap hgrid">
+    <div>
+      <h1>Física y Química <span>explicada fácil</span>, de 2º ESO a 2º Bachillerato</h1>
+      <p class="lede">Vídeos, apuntes, problemas resueltos y exámenes, ordenados por curso y por tema.</p>
+      ${sbox('hq')}
+      <div class="stats"><div><b>+890</b>vídeos</div><div><b>${temas}</b>temas</div><div><b>${docs}</b>PDF</div></div>
+    </div>
+    ${DOODLE}
+  </div></section>
+  <section class="band"><div class="wrap">
+    <div class="sh"><h2>Elige tu curso</h2><p>Cada curso tiene su color. Dentro, todos los temas tienen la misma estructura.</p></div>
+    <div class="courses">${COURSES.map(c=>`<a class="cc" href="#${c.id}" style="${sty(c.id)}">
+      <div class="top"><span class="lv">${esc(LOOK[c.id].lv)}</span><span class="badge">${c.topics.length} temas</span></div>
+      <span class="nm">${esc(c.full)}</span>
+      <span class="nums"><span>${vids(c)} vídeos</span><span>${nmat(c)} PDF</span></span>
+      <span class="go">Entrar →</span></a>`).join('')}</div>
+  </div></section>
+  <section class="band alt"><div class="wrap">
+    <div class="sh"><h2>Qué encontrarás en cada tema</h2></div>
+    <div class="how">
+      <div><i style="background:#ffe1e4">▶</i><h3>Vídeos</h3><p>Las listas del canal, colocadas en su tema. Se ven aquí mismo.</p></div>
+      <div><i style="background:#dbeafe">✎</i><h3>Apuntes y problemas</h3><p>Teoría, presentaciones, infografías y problemas, muchos resueltos paso a paso.</p></div>
+      <div><i style="background:#fef3c7">★</i><h3>Exámenes y PAU</h3><p>Exámenes de otros cursos y preguntas de la PAU de la Comunitat Valenciana.</p></div>
+    </div>
+  </div></section>
+  <section class="band alt2"><div class="wrap">
+    <div class="sh"><h2>Más vídeos del canal</h2><p>Curiosidades, divulgación y otros contenidos.</p></div>
+    <div class="grid">${EXTRA.map(card).join('')}</div>
+  </div></section>`;
+  bindSearch('hq');
+}
+
+/* ===================== curso y tema ===================== */
+function course(c, ti){
+  const t = ti!=null ? c.topics[ti] : null;
+  const side = `<p>Temas de ${esc(c.name)}</p>` + c.topics.map((x,i)=>{const m=mats(c,i).length;
+    return `<a href="#${c.id}/${i+1}" class="${i===ti?'on':''}" ${i===ti?'aria-current="page"':''}><b>${i+1}</b><span>${esc(x.t)}<small>${cnt(x.pl)||'—'} vídeos${m?` · ${m} PDF`:''}${x.revisar?' · <span class="rv">revisar</span>':''}</small></span></a>`}).join('');
+  let body;
+  if(!t){
+    body = `<div class="thead"><h2>Temas del curso</h2></div>
+      ${c.note?`<div class="warn">${esc(c.note)}</div>`:''}
+      <table class="ov stack" style="margin:14px 0 30px"><thead><tr><th>Tema</th><th class="n">Vídeos</th><th class="n">PDF</th></tr></thead><tbody>
+      ${c.topics.map((x,i)=>`<tr><td><a href="#${c.id}/${i+1}">${i+1}. ${esc(x.t)}</a></td><td class="n">${cnt(x.pl)||'—'}</td><td class="n">${mats(c,i).length||'—'}</td></tr>`).join('')}</tbody></table>
+      ${(c.course||c.course2)?`<div class="thead"><h2>Curso completo en vídeo</h2></div><div class="grid big" style="margin-top:18px">${[c.course,c.course2].filter(Boolean).map(card).join('')}</div>`:''}`;
+  } else {
+    const M = mats(c,ti), list = M.filter(m=>m.tipo===tab);
+    let inner;
+    if(tab==='videos') inner = `<div class="grid ${t.pl.length===1?'solo':'big'}">${t.pl.map(card).join('')}</div>`;
+    else if(list.length) inner = `<div class="docs">${list.map(m=>`<div class="doc ${m.tipo}"><span class="pdf">PDF</span>
+        <div><div class="t">${esc(m.title)}</div><div class="s"><span class="code">${esc(m.code)}</span><span>${m.pages} ${plural(m.pages,'página','páginas')}</span><span>${size(m.kb)}</span></div></div>
+        <a class="btn" href="${esc(m.url)}" target="_blank" rel="noopener">Abrir PDF</a></div>`).join('')}</div>`;
+    else inner = `<div class="empty"><b>Todavía no hay ${esc(TABS.find(x=>x[0]===tab)[1].toLowerCase())} en este tema.</b><br>¡Pronto habrá más!</div>`;
+    body = `<div class="thead"><h2>${ti+1}. ${esc(t.t)}</h2>
+        <div class="meta"><span class="code">${code(c,ti)}</span><span><b>${cnt(t.pl)||'—'}</b> vídeos</span><span><b>${M.length}</b> PDF</span></div>
+        ${t.revisar?'<div class="warn">Asignación provisional de vídeos: pendiente de revisar.</div>':''}</div>
+      <div class="tabs" role="tablist">${TABS.map(([key,n])=>{const q = key==='videos'?t.pl.length:M.filter(m=>m.tipo===key).length;
+        return `<button class="tab ${tab===key?'on':''}" data-tab="${key}" role="tab" aria-selected="${tab===key}">${n}<span>${q}</span></button>`}).join('')}</div>
+      ${inner}
+      <div class="pn">${ti>0?`<a class="btn ghost" href="#${c.id}/${ti}">← Tema ${ti}</a>`:'<span></span>'}${ti<c.topics.length-1?`<a class="btn" href="#${c.id}/${ti+2}">Tema ${ti+2} →</a>`:''}</div>`;
+  }
+  app.innerHTML = `
+  <section class="chead" style="${sty(c.id)}"><div class="wrap chg">
+    <div><div class="crumb"><a href="#">Inicio</a> › <a href="#${c.id}">${esc(c.full)}</a>${t?` › Tema ${ti+1}`:''}</div><h1><span class="lv">${esc(LOOK[c.id].lv)}</span>${esc(LOOK[c.id].sub)}</h1></div>
+    ${sbox('cq')}
+  </div></section>
+  <div class="wrap layout" style="${sty(c.id)}"><nav class="side" aria-label="Temas">${side}</nav><div>${body}</div></div>`;
+  bindSearch('cq');
+  const on = app.querySelector('.side a.on'); if(on && innerWidth<900) on.scrollIntoView({block:'nearest',inline:'center'});
+}
+
+/* ===================== navegación ===================== */
+function route(){
+  const [cid, n] = location.hash.slice(1).split('/'), c = COURSES.find(x=>x.id===cid);
+  menus(c?c.id:null);
+  document.getElementById('mob').classList.remove('on');
+  if(!c) home(); else { const i = parseInt(n,10)-1; course(c, i>=0 && i<c.topics.length ? i : null); }
+}
+let pendingTab = null;
+document.addEventListener('click', e => {
+  const p = e.target.closest('[data-play]');
+  if(p){ p.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/videoseries?list=${encodeURIComponent(p.dataset.play)}&autoplay=1&rel=0" title="Reproductor de YouTube" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`; return; }
+  const go = e.target.closest('[data-go]');
+  if(go){ pendingTab = go.dataset.go; if(go.getAttribute('href')===location.hash){ e.preventDefault(); tab=pendingTab; pendingTab=null; route(); scrollTo(0,0);} return; }
+  const tb = e.target.closest('[data-tab]');
+  if(tb){ tab = tb.dataset.tab; const y = scrollY; route(); scrollTo(0,y); return; }
+  const b = e.target.closest('.ddb');
+  if(b){ const w = b.parentElement, was = w.classList.contains('open'); document.querySelectorAll('.ddw.open').forEach(d=>d.classList.remove('open')); if(!was) w.classList.add('open'); return; }
+  if(!e.target.closest('.ddw')) document.querySelectorAll('.ddw.open').forEach(d=>d.classList.remove('open'));
+  if(!e.target.closest('.sbox')) document.querySelectorAll('.sres.on').forEach(r=>r.classList.remove('on'));
+});
+document.addEventListener('keydown', e => { if(e.key==='Escape'){ document.querySelectorAll('.ddw.open').forEach(d=>d.classList.remove('open')); document.querySelectorAll('.sres.on').forEach(r=>r.classList.remove('on')); }});
+document.getElementById('mobb').addEventListener('click', e => { const m = document.getElementById('mob'); m.classList.toggle('on'); e.currentTarget.setAttribute('aria-expanded', m.classList.contains('on')); });
+addEventListener('hashchange', () => { tab = pendingTab || 'videos'; pendingTab = null; route(); scrollTo(0,0); });
+route();
+}
+</script>
+</body>
+</html>
